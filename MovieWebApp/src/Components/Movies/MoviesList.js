@@ -14,6 +14,9 @@ const MoviesList = props => {
                                 category={movie.category}
                                 rating={movie.rating}
                                 image={movie.image}
+                                screen={movie.screen}
+                                timing={movie.timing}
+                                capacity={movie.capacity}
                             />
                         ))}
                     </ul>

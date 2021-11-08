@@ -62,14 +62,14 @@ p a:hover {
 #header div ul li {
 	float:left;
 	height:66px;
-	margin:0 0 0 65px;
+	margin:0 0 0 100px;
 	text-align:left;
 	position:relative;
 }
 #header div ul li a {
 	color:#000;
 	font-family:oswaldregular;
-	font-size:18px;
+	font-size:28px;
 	line-height:24px;
 	text-decoration:none;
 	text-transform:uppercase;
@@ -108,9 +108,9 @@ p a:hover {
 	top:0;
 }
 #header div ul li ul li a {
-	color:#a5a5a5!important;
+	color:white!important;
 	font-family:Arial, Helvetica, sans-serif;
-	font-size:12px;
+	font-size:20px;
 	line-height:28px;
 	text-transform:none;
 }
