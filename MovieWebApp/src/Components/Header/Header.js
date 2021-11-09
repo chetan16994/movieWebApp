@@ -1,7 +1,9 @@
 import { Fragment } from "react";
+import HeaderCartButton from "./HeaderCartButton";
 
 
-const HomeHeader = () => {
+
+const HomeHeader = (props) => {
     return (
         <Fragment>
             <div>
@@ -25,20 +27,16 @@ const HomeHeader = () => {
                             <li>
                                 <a href="ticket-info.html">Ticket Info</a>
                             </li>
-                            {/* <li>
-                            <a href="rentals.html">Rentals</a>
-                        </li>
-                        <li>
-                            <a href="about.html">About</a>
-                        </li> */}
                             <li>
-                                <a href="blog.html">Login</a>
+                                <a href="login.html">Login</a>
                             </li>
                         </ul>
+                        <HeaderCartButton onClick={props.onShowCart} />
                     </div>
+                    
                 </div>
             </div>
-            
+
         </Fragment>
     );
 };

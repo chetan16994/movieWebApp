@@ -1,9 +1,10 @@
-import { Fragment } from 'react';
+import { Fragment, useState } from 'react';
 import './App.css';
 import Home from './Components/Home/Home';
 import Header from './Components/Header/Header';
 import Footer from './Components/Footer/Footer';
-
+import Cart from './Components/Cart/Cart';
+import CartProvider from './store/CartProvider';
 
 const DUMMY_SLOTS = [
   '8-11 AM',
@@ -63,13 +64,24 @@ const DUMMY_MOVIES = [
 ];
 
 function App() {
+  const [cartIsShown, setCartIsShown] = useState(false);
+
+  const showCartHandler = () => {
+    setCartIsShown(true);
+  };
+
+  const hideCartHandler = () => {
+    setCartIsShown(false);
+  };
+
   return (
-    <Fragment>
-      <Header />
+    <CartProvider>
+      <Header onShowCart={showCartHandler} />
+      {cartIsShown && <Cart onClose={hideCartHandler} />}
       <Home data={DUMMY_MOVIES} />
       <Footer />
-    </Fragment>
-     
+    </CartProvider>
+
   );
 }
 
