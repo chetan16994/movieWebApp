@@ -3,7 +3,7 @@ import HeaderCartButton from "./HeaderCartButton";
 
 
 
-const HomeHeader = (props) => {
+const Header = (props) => {
     return (
         <Fragment>
             <div>
@@ -41,4 +41,4 @@ const HomeHeader = (props) => {
     );
 };
 
-export default HomeHeader;
+export default Header;

@@ -4,7 +4,7 @@ import Movies from "../Movies/Movies";
 const Home = props => {
     return(
         <div>
-            <Movies data={props.data}/>
+            <Movies data={props.data} onAddCartCapacity={props.onAddCartCapacity}/>
         </div>
     );
 };

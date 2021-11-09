@@ -1,20 +1,37 @@
-import MovieForm from "./MovieForm";
+import { useContext } from 'react';
+import MovieForm from './MovieForm';
+import CartContext from '../../store/cart-context';
+
 const MoviesListDisplay = props => {
-    const hStyle = { color: 'red' };
-    return (
+
+    const cartCtx = useContext(CartContext);
+    // const price = `$${props.price.toFixed(2)}`;
+
+    const addToCartHandler = (amount) => {
         
+        cartCtx.addItem({
+            id: props.id,
+            name: props.name,
+            amount: amount,
+            price: props.price,
+            theater: props.theater,
+            capacity:props.capacity,
+            timing:props.timing
+        });
+    };
+    return (
         <div>
             <li>
                 <h2>{props.name}</h2>
                 <span>Rating: {props.rating}</span>
-                <span>Show timimg: {props.timing}</span>
-                <span>Capacity: {props.capacity}</span>
+                {props.nowShowing === 'true' && <span>Show timimg: {props.timing}</span>}
+                {props.nowShowing === 'true' && <span>Price: {props.price} $</span>}
+                {props.nowShowing === 'true' && <span>Capacity: {props.capacity}</span>}
                 <span>Release Date : {props.releaseDate.substring(0, 10)}</span>
                 {/* <span>Screen Number : {props.screen}</span> */}
                 <span>Category: {props.category}</span> 
-                <MovieForm />
+                {props.nowShowing === 'true' && <MovieForm id={props.id} onAddToCart={addToCartHandler}   />}
                 <a href="movies.html"><img src={`images/${props.image}.jpg`} alt="" /></a>
-                
             </li>
         </div >
     );

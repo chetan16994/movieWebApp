@@ -1,4 +1,3 @@
-import { Fragment } from "react";
 import classes from './MovieShowing.module.css';
 
 const MovieShwoing = props => {

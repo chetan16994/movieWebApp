@@ -1,4 +1,4 @@
-import { Fragment, useState } from 'react';
+import { useState } from 'react';
 import './App.css';
 import Home from './Components/Home/Home';
 import Header from './Components/Header/Header';
@@ -7,10 +7,10 @@ import Cart from './Components/Cart/Cart';
 import CartProvider from './store/CartProvider';
 
 const DUMMY_SLOTS = [
-  '8-11 AM',
-  '12-3 PM',
-  '4-7 PM',
-  '8-11 PM'
+  ['8-11 AM',10.00],
+  ['12-3 PM',12.00],
+  ['4-7 PM',15.00],
+  ['8-11 PM',17.00]
 ];
 const DUMMY_MOVIES = [
   {
@@ -22,8 +22,9 @@ const DUMMY_MOVIES = [
     image: 'oxygen-img',
     nowShowing: 'true',
     theater: '3',
-    timing: DUMMY_SLOTS[0],
-    capacity: 60
+    timing: DUMMY_SLOTS[0][0],
+    capacity: 60,
+    price: DUMMY_SLOTS[0][1]
   },
   {
     id: 2,
@@ -34,8 +35,9 @@ const DUMMY_MOVIES = [
     image: 'in the earth img',
     nowShowing: 'true',
     theater: '1',
-    timing: DUMMY_SLOTS[1],
-    capacity: 60
+    timing: DUMMY_SLOTS[1][0],
+    capacity: 60,
+    price: DUMMY_SLOTS[1][1]
   },
   {
     id: 3,
@@ -46,8 +48,9 @@ const DUMMY_MOVIES = [
     image: 'got-img',
     nowShowing: 'true',
     theater: '2',
-    timing: DUMMY_SLOTS[2],
-    capacity: 60
+    timing: DUMMY_SLOTS[2][0],
+    capacity: 60,
+    price: DUMMY_SLOTS[2][1]
   },
   {
     id: 4,
@@ -74,11 +77,15 @@ function App() {
     setCartIsShown(false);
   };
 
+  const updateCapacityHandler = () =>{
+      console.log("update capacity");
+  };
+
   return (
     <CartProvider>
       <Header onShowCart={showCartHandler} />
       {cartIsShown && <Cart onClose={hideCartHandler} />}
-      <Home data={DUMMY_MOVIES} />
+      <Home data={DUMMY_MOVIES} onAddCartCapacity={updateCapacityHandler} />
       <Footer />
     </CartProvider>
 

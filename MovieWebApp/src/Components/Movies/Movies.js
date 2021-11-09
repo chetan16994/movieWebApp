@@ -5,11 +5,7 @@ import MoviesSort from "./MoviesSort";
 import MovieShwoing from "./MovieShowing";
 
 const Movies = (props) => {
-    props.data.filter(movie =>{
-        console.log("ggggg --  ", movie.timing);
-    })
     
-
     const [filteredCategory, setFilteredCategory] = useState('');
     const [sortedCategory, setSortedCategory] = useState('');
     const [showingStatus, setShowingStatus] = useState('');
@@ -29,13 +25,11 @@ const Movies = (props) => {
     };
 
     const filteredAndSortedMovies = props.data.filter((movie) => {       
-        console.log(filteredCategory)
         if (filteredCategory.length === 0 || filteredCategory==='All'){
                 return props.data;
         } 
         return movie.category === filteredCategory;
     }).filter((movie) =>{
-        console.log(showingStatus)
         if (showingStatus==='true')
             return movie.nowShowing === 'true';
         if (showingStatus === 'false')
@@ -63,7 +57,7 @@ const Movies = (props) => {
                 selectedSort={sortedCategory}
                 onChangeSort={sortedChangeHandler}
             />
-            <MoviesList data={filteredAndSortedMovies}/>
+            <MoviesList data={filteredAndSortedMovies} onAddCartCapacity={props.onAddCartCapacity}/>
         </div>
     )
 }

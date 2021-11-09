@@ -1,8 +1,7 @@
 import MoviesListDisplay from "./MoviesListDisplay";
 const MoviesList = props => {
     return (
-        
-        <div>{console.log(props)}
+        <div>
             <div id="body" className="home">
                 <div>
                     <ul>
@@ -14,9 +13,12 @@ const MoviesList = props => {
                                 category={movie.category}
                                 rating={movie.rating}
                                 image={movie.image}
-                                screen={movie.screen}
+                                theater={movie.theater}
                                 timing={movie.timing}
                                 capacity={movie.capacity}
+                                price={movie.price}
+                                nowShowing={movie.nowShowing}
+                                onAddCartCapacity={props.onAddCartCapacity}
                             />
                         ))}
                     </ul>
