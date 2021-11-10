@@ -57,7 +57,7 @@ const Movies = (props) => {
                 selectedSort={sortedCategory}
                 onChangeSort={sortedChangeHandler}
             />
-            <MoviesList data={filteredAndSortedMovies} onAddCartCapacity={props.onAddCartCapacity}/>
+            <MoviesList data={filteredAndSortedMovies} onUpdateCartCapacity={props.onUpdateCartCapacity}/>
         </div>
     )
 }

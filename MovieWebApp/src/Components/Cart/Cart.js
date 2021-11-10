@@ -5,17 +5,26 @@ import CartItem from './CartItem';
 import CartContext from '../../store/cart-context';
 
 const Cart = props =>{
+    
     const cartCtx = useContext(CartContext);
 
-    const totalAmount = `$${cartCtx.totalAmount.toFixed(2)}`;
+    const totalAmount = `$${cartCtx.totalAmount.toFixed(2)}`;  
     const hasItems = cartCtx.items.length > 0;
-
-    const cartItemRemoveHandler = (id) => {
-        cartCtx.removeItem(id);
+    
+    const cartItemRemoveHandler = (item) => {
+        item.capacity = item.capacity+1;
+        props.onUpdateCartCapacity(item.id,-1);
+        cartCtx.removeItem(item);
     };
 
     const cartItemAddHandler = (item) => {
-        cartCtx.addItem({ ...item, amount: 1 });
+        item.capacity=item.capacity-1;
+        if(item.capacity>=0){
+        cartCtx.addItem({ ...item, amount: 1});
+         props.onUpdateCartCapacity(item.id,1); 
+        }else{
+            <p>no more tickets</p>
+        }
     };
 
     const cartItems = (
@@ -29,7 +38,7 @@ const Cart = props =>{
                     capacity={item.capacity}
                     amount={item.amount}
                     price={item.price}
-                    onRemove={cartItemRemoveHandler.bind(null, item.id)}
+                    onRemove={cartItemRemoveHandler.bind(null, item)}
                     onAdd={cartItemAddHandler.bind(null, item)}
                 />
             ))}
@@ -38,9 +47,10 @@ const Cart = props =>{
     return(
         <Modal onClose={props.onClose}>
             {cartItems}
-            <div className={classes.total}>
+            <div className={classes.total} >
                 <span>Total Amount</span>
                 <span>{totalAmount}</span>
+                {/* {!ticketAvailability && <p style={{background:'red'}}>No more tickets</p>} */}
             </div>
             <div className={classes.actions}>
                 <button className={classes['button--alt']} onClick={props.onClose}>

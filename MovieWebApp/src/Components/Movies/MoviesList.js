@@ -5,6 +5,7 @@ const MoviesList = props => {
             <div id="body" className="home">
                 <div>
                     <ul>
+                        {console.log(props.data)}
                         {props.data.map((movie) => (
                             <MoviesListDisplay
                                 name={movie.name}
@@ -18,7 +19,7 @@ const MoviesList = props => {
                                 capacity={movie.capacity}
                                 price={movie.price}
                                 nowShowing={movie.nowShowing}
-                                onAddCartCapacity={props.onAddCartCapacity}
+                                onUpdateCartCapacity={props.onUpdateCartCapacity}
                             />
                         ))}
                     </ul>

@@ -8,15 +8,16 @@ const MoviesListDisplay = props => {
     // const price = `$${props.price.toFixed(2)}`;
 
     const addToCartHandler = (amount) => {
-        
+        props.onUpdateCartCapacity(props.id, amount);
         cartCtx.addItem({
             id: props.id,
             name: props.name,
             amount: amount,
             price: props.price,
             theater: props.theater,
-            capacity:props.capacity,
-            timing:props.timing
+            // --------------bug------------------
+            capacity: props.capacity - 1,
+            timing: props.timing
         });
     };
     return (
@@ -29,8 +30,8 @@ const MoviesListDisplay = props => {
                 {props.nowShowing === 'true' && <span>Capacity: {props.capacity}</span>}
                 <span>Release Date : {props.releaseDate.substring(0, 10)}</span>
                 {/* <span>Screen Number : {props.screen}</span> */}
-                <span>Category: {props.category}</span> 
-                {props.nowShowing === 'true' && <MovieForm id={props.id} onAddToCart={addToCartHandler}   />}
+                <span>Category: {props.category}</span>
+                {props.nowShowing === 'true' && <MovieForm id={props.id} onAddToCart={addToCartHandler} />}
                 <a href="movies.html"><img src={`images/${props.image}.jpg`} alt="" /></a>
             </li>
         </div >

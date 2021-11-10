@@ -9,15 +9,16 @@ const CartItem = (props) => {
                 <h2>{props.name}</h2>
                 <h4>Show Time : {props.timing}</h4>
                 <h4>Screen : {props.theater}</h4>
-                <h4>Seat Capacity : {props.capacity}</h4>
+                <h4>capacity : {props.capacity}</h4>
                 <div className={classes.summary}>
                     <span className={classes.price}>{price}</span>
                     <span className={classes.amount}>x {props.amount}</span>
                 </div>
             </div>
             <div className={classes.actions}>
-                <button onClick={props.onRemove}>−</button>
-                <button onClick={props.onAdd}>+</button>
+                 <button onClick={props.onRemove}>−</button>
+               <button onClick={props.onAdd}>+</button>
+                
             </div>
         </li>
     );

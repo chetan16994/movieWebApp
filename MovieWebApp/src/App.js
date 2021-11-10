@@ -37,7 +37,8 @@ const DUMMY_MOVIES = [
     theater: '1',
     timing: DUMMY_SLOTS[1][0],
     capacity: 60,
-    price: DUMMY_SLOTS[1][1]
+    price: DUMMY_SLOTS[1][1],
+    amount: 0
   },
   {
     id: 3,
@@ -49,7 +50,7 @@ const DUMMY_MOVIES = [
     nowShowing: 'true',
     theater: '2',
     timing: DUMMY_SLOTS[2][0],
-    capacity: 60,
+    capacity: 6,
     price: DUMMY_SLOTS[2][1]
   },
   {
@@ -67,6 +68,7 @@ const DUMMY_MOVIES = [
 ];
 
 function App() {
+  const [movies,setMovies]=useState(DUMMY_MOVIES);
   const [cartIsShown, setCartIsShown] = useState(false);
 
   const showCartHandler = () => {
@@ -77,18 +79,22 @@ function App() {
     setCartIsShown(false);
   };
 
-  const updateCapacityHandler = () =>{
-      console.log("update capacity");
+  const updateCapacityHandler = (id,amount) =>{
+    
+    const temp=movies.map((movie)=>{
+      if(movie.id===id) movie.capacity=movie.capacity-amount;
+      return movie;
+    });
+    setMovies(temp);
   };
 
   return (
     <CartProvider>
       <Header onShowCart={showCartHandler} />
-      {cartIsShown && <Cart onClose={hideCartHandler} />}
-      <Home data={DUMMY_MOVIES} onAddCartCapacity={updateCapacityHandler} />
+      {cartIsShown && <Cart onUpdateCartCapacity={updateCapacityHandler} onClose={hideCartHandler} />}
+      <Home data={movies} onUpdateCartCapacity={updateCapacityHandler} />
       <Footer />
     </CartProvider>
-
   );
 }
 
