@@ -1,29 +1,39 @@
-import { useContext } from 'react';
+import { useContext, useState, Fragment } from 'react';
 import classes from './Cart.module.css';
 import Modal from '../UI/Modal';
 import CartItem from './CartItem';
 import CartContext from '../../store/cart-context';
+import NoSeatPopUp from '../UI/NoSeatPopUP';
 
-const Cart = props =>{
-    
+const Cart = props => {
+
     const cartCtx = useContext(CartContext);
 
-    const totalAmount = `$${cartCtx.totalAmount.toFixed(2)}`;  
+    const [ticketAvailable, setTicketAvailable] = useState(true);
+    const [showPopUP, setShowPopUp] = useState(true);
+
+    const totalAmount = `$${cartCtx.totalAmount.toFixed(2)}`;
     const hasItems = cartCtx.items.length > 0;
-    
+
+    const hidePopUpHandler = () => {
+        setShowPopUp(false);
+    };
+
     const cartItemRemoveHandler = (item) => {
-        item.capacity = item.capacity+1;
-        props.onUpdateCartCapacity(item.id,-1);
+        item.capacity = item.capacity + 1;
+        props.onUpdateCartCapacity(item.id, -1);
         cartCtx.removeItem(item);
     };
 
     const cartItemAddHandler = (item) => {
-        item.capacity=item.capacity-1;
-        if(item.capacity>=0){
-        cartCtx.addItem({ ...item, amount: 1});
-         props.onUpdateCartCapacity(item.id,1); 
-        }else{
-            <p>no more tickets</p>
+
+        if (item.capacity > 0) {
+            item.capacity = item.capacity - 1;
+            cartCtx.addItem({ ...item, amount: 1 });
+            props.onUpdateCartCapacity(item.id, 1);
+        } else {
+            setShowPopUp(true);
+            setTicketAvailable(false);
         }
     };
 
@@ -44,21 +54,24 @@ const Cart = props =>{
             ))}
         </ul>
     );
-    return(
-        <Modal onClose={props.onClose}>
-            {cartItems}
-            <div className={classes.total} >
-                <span>Total Amount</span>
-                <span>{totalAmount}</span>
-                {/* {!ticketAvailability && <p style={{background:'red'}}>No more tickets</p>} */}
-            </div>
-            <div className={classes.actions}>
-                <button className={classes['button--alt']} onClick={props.onClose}>
-                    Close
-                </button>
-                {hasItems && <button className={classes.button}>Order</button>}
-            </div>
-        </Modal>
+    return (
+        <Fragment>
+            {!ticketAvailable && showPopUP && <NoSeatPopUp onClose={hidePopUpHandler} />}
+            <Modal onClose={props.onClose}>
+                {cartItems}
+                <div className={classes.total} >
+                    <span>Total Amount</span>
+                    <span>{totalAmount}</span>
+                    {/* {!ticketAvailability && <p style={{background:'red'}}>No more tickets</p>} */}
+                </div>
+                <div className={classes.actions}>
+                    <button className={classes['button--alt']} onClick={props.onClose}>
+                        Close
+                    </button>
+                    {hasItems && <button className={classes.button}>Order</button>}
+                </div>
+            </Modal>
+        </Fragment>
     );
 };
 

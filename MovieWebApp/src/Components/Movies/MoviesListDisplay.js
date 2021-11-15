@@ -1,13 +1,24 @@
-import { useContext } from 'react';
+import { useContext,useState } from 'react';
 import MovieForm from './MovieForm';
 import CartContext from '../../store/cart-context';
+import NoSeatPopUp from '../UI/NoSeatPopUP';
+
 
 const MoviesListDisplay = props => {
 
     const cartCtx = useContext(CartContext);
     // const price = `$${props.price.toFixed(2)}`;
 
+    const [ticketAvailable, setTicketAvailable]=useState(true);
+    const [showPopUP,setShowPopUp]=useState(true);
+
+    const hidePopUpHandler =()=>{
+        setShowPopUp(false);
+    };
+
     const addToCartHandler = (amount) => {
+        {console.log(ticketAvailable)}
+        if(props.capacity>0){
         props.onUpdateCartCapacity(props.id, amount);
         cartCtx.addItem({
             id: props.id,
@@ -15,10 +26,13 @@ const MoviesListDisplay = props => {
             amount: amount,
             price: props.price,
             theater: props.theater,
-            // --------------bug------------------
             capacity: props.capacity - 1,
             timing: props.timing
         });
+        }else{
+            setShowPopUp(true);
+            setTicketAvailable(false);
+        }
     };
     return (
         <div>
@@ -34,6 +48,7 @@ const MoviesListDisplay = props => {
                 {props.nowShowing === 'true' && <MovieForm id={props.id} onAddToCart={addToCartHandler} />}
                 <a href="movies.html"><img src={`images/${props.image}.jpg`} alt="" /></a>
             </li>
+            {!ticketAvailable && showPopUP && <NoSeatPopUp onClose={hidePopUpHandler}/>}
         </div >
     );
 };
