@@ -10,7 +10,6 @@ const Movies = (props) => {
     const [sortedCategory, setSortedCategory] = useState('');
     const [showingStatus, setShowingStatus] = useState('');
 
-
     const filterChangeHandler = (selectedCategory) => {
         setFilteredCategory(selectedCategory);
     };
@@ -21,7 +20,6 @@ const Movies = (props) => {
 
     const showingStatusHandler = (showingStatus) => {
         setShowingStatus(showingStatus)
-        
     };
 
     const filteredAndSortedMovies = props.data.filter((movie) => {       
@@ -33,7 +31,6 @@ const Movies = (props) => {
             if (movie.category[i]===filteredCategory)
                     return movie.category[i] === filteredCategory;
         }
-        
     }).filter((movie) =>{
         if (showingStatus==='now showing')
             return movie.nowShowing === 'now showing';
@@ -45,7 +42,7 @@ const Movies = (props) => {
         if (sortedCategory === 'releaseDate'){  
             return new Date(b[sortedCategory]) - new Date(a[sortedCategory]);
         }
-        return ((a[sortedCategory]) - (b[sortedCategory]));        
+        return ((b[sortedCategory]) - (a[sortedCategory]));        
     });
 
     return (

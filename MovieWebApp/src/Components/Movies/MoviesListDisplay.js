@@ -7,8 +7,6 @@ import NoSeatPopUp from '../UI/NoSeatPopUP';
 const MoviesListDisplay = props => {
 
     const cartCtx = useContext(CartContext);
-    // const price = `$${props.price.toFixed(2)}`;
-
     const [ticketAvailable, setTicketAvailable]=useState(true);
     const [showPopUP,setShowPopUp]=useState(true);
 
@@ -17,7 +15,6 @@ const MoviesListDisplay = props => {
     };
 
     const addToCartHandler = (amount) => {
-        {console.log(ticketAvailable)}
         if(props.capacity>0){
         props.onUpdateCartCapacity(props.id, amount);
         cartCtx.addItem({
@@ -42,7 +39,6 @@ const MoviesListDisplay = props => {
                 <br />
                 <span>Overview</span>
                 <textarea value={props.plot} rows='7' />
-                {/* <span>{props.plot}</span> */}
                 <span>Rating: {props.rating}</span>
                 <span>Duration: {props.duration}</span>
                 {props.nowShowing === 'now showing' && <span>Show timimg: {props.timing}</span>}
@@ -50,9 +46,7 @@ const MoviesListDisplay = props => {
                 {props.nowShowing === 'now showing' && <span>Capacity: {props.capacity}</span>}
                 {props.nowShowing === 'now showing' && <span>Screen: {props.theater}</span>}
                 <span>Release Date : {props.releaseDate}</span>
-                {/* <span>Screen Number : {props.screen}</span> */}
                 <span>Category:  </span>
-                {/* <br /> */}
                 {props.category.length!=0?props.category.map((cat) => <span >{cat}, </span>):""}                
                 {props.nowShowing === 'now showing' && <MovieForm id={props.id} onAddToCart={addToCartHandler} />}
                 <a href="movies.html"><img src={props.image} alt="" /></a>

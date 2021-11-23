@@ -2,6 +2,7 @@ import React, { Fragment, useRef, useCallback, useState, useEffect } from 'react
 
 import classes from './AddMovie.module.css';
 // import validationClasses from '../UI/FormValidation.module.css';
+import useHttp from '../../hooks/use-Http';
 
 function AddMovie(props) {
 
@@ -49,7 +50,6 @@ function AddMovie(props) {
             // const url = `https://imdb-api.com/en/API/Title/k_d40xdze4/${props.id}`
             const url = `https://imdb-api.com/en/API/Title/k_2e0orz7h/${props.id}`
             // const url = `https://imdb-api.com/en/API/Title/k_u87040tw/${props.id}`
-            console.log(url)
             const response = await fetch(url);
             if (!response.ok) {
                 throw new Error('Something went wrong!');
@@ -69,7 +69,7 @@ function AddMovie(props) {
                 image: data.image,
                 genres: data.genreList
             };
-            console.log(transformedMovies, "  trans")
+
             setMovie(transformedMovies);
 
         } catch (error) {
@@ -100,7 +100,6 @@ function AddMovie(props) {
 
     function submitHandler(event) {
         event.preventDefault();
-        // could add validation here...
 
         if (!capacityIsValid || !priceIsValid || !screenNumberIsValid || !timeSlotIsValid) {
             return;
@@ -122,9 +121,8 @@ function AddMovie(props) {
             timing: timeSlot,
             price: price
         };
-        console.log(movieData, "drtfygughgjhgjhg")
+        
         addMovieHandler(movieData)
-
     };
 
     return (
@@ -239,7 +237,6 @@ function AddMovie(props) {
                 }
 
                 <div className={classes['form-action']}>
-                    {console.log(formIsValid, "fir,,,")}
                     <button
                         disabled={!formIsValid}
                     >Submit</button>

@@ -5,7 +5,6 @@ const MoviesList = props => {
             <div id="body" className="home">
                 <div>
                     <ul>
-                        {console.log(props.data)}
                         {props.data.map((movie) => (
                             <MoviesListDisplay
                                 name={movie.name}

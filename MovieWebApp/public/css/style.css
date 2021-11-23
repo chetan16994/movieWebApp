@@ -190,9 +190,9 @@ p a:hover {
 
 #body.home div:first-child ul li {
 	border-left:1px solid #4f4f4f;
-	float:left;
+	/* float:left; */
 	width:auto;
-	margin-top: 6%;
+	margin-bottom:15px ;
 }
 #body.home div:first-child ul li textarea {
 	background-color:  black;

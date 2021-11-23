@@ -97,18 +97,9 @@ const Cart = props => {
                 <div className={classes.total} >
                     <span>Total Amount</span>
                     <span>{totalAmount}</span>
-                    {/* {!ticketAvailability && <p style={{background:'red'}}>No more tickets</p>} */}
                 </div>
-                {/* <div className={classes.actions}>
-                    <button className={classes['button--alt']} onClick={props.onClose}>
-                        Close
-                    </button>
-                    {hasItems && <button className={classes.button}>Order</button>}
-                </div> */}
-
                 {isCheckout && <Checkout onConfirm={submitOrderHandler} onCancel={props.onClose} />}
                 {!isCheckout && modalActions}
-
             </Modal>
         </Fragment>
     );
