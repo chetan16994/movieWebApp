@@ -1,4 +1,5 @@
-import './MovieSort.css';
+import classes from './MovieShowing.module.css';
+
 const MoviesSort = props => {
 
     const dropDownSortChangeHandler = (event) => {
@@ -6,8 +7,8 @@ const MoviesSort = props => {
     }
 
     return (
-        <div className='movie-sort'>
-            <div className='movie-sort__control'>
+        <div className={classes['movie-showing']}>
+            <div className={classes['movie-showing__control']}>
                 <label>Sort </label>
                 <select value={props.selected} onChange={dropDownSortChangeHandler}>
                     <option value="" >Select a category</option>

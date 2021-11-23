@@ -3,7 +3,7 @@ import Movies from "../Movies/Movies";
 
 const Home = props => {
     return(
-        <div>
+        <div>{console.log(props.data)}
             <Movies data={props.data} onUpdateCartCapacity={props.onUpdateCartCapacity}/>
         </div>
     );

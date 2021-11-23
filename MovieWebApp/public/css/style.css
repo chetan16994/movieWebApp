@@ -192,22 +192,38 @@ p a:hover {
 	border-left:1px solid #4f4f4f;
 	float:left;
 	width:auto;
+	margin-top: 6%;
+}
+#body.home div:first-child ul li textarea {
+	background-color:  black;
+	color:#a5a5a5;
+	font-size:15px;
+	margin-left: 4%;
+	font-family: sans-serif;
+	width:450px;
 }
 #body.home div:first-child ul li h3 {
 	margin:23px 0 5px 20px;
 }
 #body.home div:first-child ul li h2 {
-	color:#fdf7f7;
+	color:#be3b07;
+	/* #fdf7f7; */
 	display:block;
-	font-size:23px;
-	line-height:18px;
+	font-size:29px;
+	line-height:12px;
 	margin:11px 0 18px 20px;
-	/* margin:23px 0 5px 20px; */
 }
 #body.home div:first-child ul li span {
 	color:#a5a5a5;
+	display:inline-block;
+	font-size:15px;
+	line-height:18px;
+	margin:1px 0 8px 20px;
+}
+#body.home div:first-child ul li li {
+	color:#a5a5a5;
 	display:block;
-	font-size:14px;
+	font-size:15px;
 	line-height:18px;
 	margin:1px 0 8px 20px;
 }

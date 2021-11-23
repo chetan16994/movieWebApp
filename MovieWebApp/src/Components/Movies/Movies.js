@@ -28,12 +28,17 @@ const Movies = (props) => {
         if (filteredCategory.length === 0 || filteredCategory==='All'){
                 return props.data;
         } 
-        return movie.category === filteredCategory;
+        if (movie.category.length===0) return;
+        for(let i=0; i<movie.category.length;i++){
+            if (movie.category[i]===filteredCategory)
+                    return movie.category[i] === filteredCategory;
+        }
+        
     }).filter((movie) =>{
-        if (showingStatus==='true')
-            return movie.nowShowing === 'true';
-        if (showingStatus === 'false')
-            return movie.nowShowing === 'false';
+        if (showingStatus==='now showing')
+            return movie.nowShowing === 'now showing';
+        if (showingStatus === 'coming soon')
+            return movie.nowShowing === 'coming soon';
         return props.data
     } )
     .sort((a,b) =>{

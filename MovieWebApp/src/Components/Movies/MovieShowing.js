@@ -13,8 +13,8 @@ const MovieShwoing = props => {
                 <select value={props.selectedShowingStatus} onChange={dropDownChangeHandler}>
                     <option value="" >Select a category</option>
                     <option value="">ALL</option>
-                    <option value='true'>Now Showing</option>
-                    <option value='false'>Coming Soon</option>
+                    <option value='now showing'>Now Showing</option>
+                    <option value='coming soon'>Coming Soon</option>
                 </select>
             </div>
         </div>

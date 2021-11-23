@@ -38,15 +38,24 @@ const MoviesListDisplay = props => {
         <div>
             <li>
                 <h2>{props.name}</h2>
+                <span>{props.tagline}</span>
+                <br />
+                <span>Overview</span>
+                <textarea value={props.plot} rows='7' />
+                {/* <span>{props.plot}</span> */}
                 <span>Rating: {props.rating}</span>
-                {props.nowShowing === 'true' && <span>Show timimg: {props.timing}</span>}
-                {props.nowShowing === 'true' && <span>Price: {props.price} $</span>}
-                {props.nowShowing === 'true' && <span>Capacity: {props.capacity}</span>}
-                <span>Release Date : {props.releaseDate.substring(0, 10)}</span>
+                <span>Duration: {props.duration}</span>
+                {props.nowShowing === 'now showing' && <span>Show timimg: {props.timing}</span>}
+                {props.nowShowing === 'now showing' && <span>Price: {props.price} $</span>}
+                {props.nowShowing === 'now showing' && <span>Capacity: {props.capacity}</span>}
+                {props.nowShowing === 'now showing' && <span>Screen: {props.theater}</span>}
+                <span>Release Date : {props.releaseDate}</span>
                 {/* <span>Screen Number : {props.screen}</span> */}
-                <span>Category: {props.category}</span>
-                {props.nowShowing === 'true' && <MovieForm id={props.id} onAddToCart={addToCartHandler} />}
-                <a href="movies.html"><img src={`images/${props.image}.jpg`} alt="" /></a>
+                <span>Category:  </span>
+                {/* <br /> */}
+                {props.category.length!=0?props.category.map((cat) => <span >{cat}, </span>):""}                
+                {props.nowShowing === 'now showing' && <MovieForm id={props.id} onAddToCart={addToCartHandler} />}
+                <a href="movies.html"><img src={props.image} alt="" /></a>
             </li>
             {!ticketAvailable && showPopUP && <NoSeatPopUp onClose={hidePopUpHandler}/>}
         </div >

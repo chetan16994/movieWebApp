@@ -1,0 +1,59 @@
+.control {
+  margin: 1rem 0;
+}
+
+.control label {
+  display: block;
+  font-weight: bold;
+  margin-bottom: 0.5rem;
+  text-align: left;
+  color: white;
+}
+
+.control input,
+.control textarea {
+  display: block;
+  width: 100%;
+  font: inherit;
+  padding: 0.2rem;
+  border-radius: 12px;
+  border: 1px solid #ccc;
+}
+
+.control input:focus,
+.control textarea:focus {
+  outline: none;
+  border-color: #230052;
+}
+
+.error-text {
+  color: #b40e0e;
+}
+
+button {
+  
+  cursor: pointer;
+}
+
+button:hover,
+button:active {
+  background-color: #8a2b06;
+  border-color:#8a2b06;
+}
+
+button:disabled,
+button:disabled:hover,
+button:disabled:active {
+  background-color: #ccc;
+  color: #292929;
+  border-color: #ccc;
+  cursor: not-allowed;
+}
+
+.form-actions {
+  text-align: right;
+}
+
+.form-actions button {
+  margin-left: 1rem;
+}

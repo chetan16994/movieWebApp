@@ -5,17 +5,19 @@
 
 .movie-showing__control {
   display: flex;
-  width: 80%;
+  width: 90%;
+  line-height: 0%;
   align-items: center;
   justify-content: space-between;
-  margin: 1rem 0;
+  margin: 0.3rem 0;
+  
 }
 
 .movie-showing label {
   font-weight: bold;
-  font-size: 40px;
+  font-size: 30px;
   margin-bottom: 0.5rem;
-  margin-left: 4.0rem;
+  margin-left: 6.0rem ;
 }
 
 .movie-showing select {
