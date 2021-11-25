@@ -6,13 +6,11 @@ import Footer from './Components/Footer/Footer';
 import Cart from './Components/Cart/Cart';
 import CartProvider from './store/CartProvider';
 import SearchMovie from './Components/Movies/SearchMovie';
-import useHttp from './hooks/use-Http';
 
 function App() {
 
   const [isLoading, setIsLoading] = useState(true);
   const [httpError, setHttpError] = useState();
-
   const [movies,setMovies]=useState();
   const [cartIsShown, setCartIsShown] = useState(false);
 
@@ -95,7 +93,7 @@ function App() {
       </section>
     );
   }
-  
+
   return (
     <CartProvider>
       <Header onShowCart={showCartHandler} />

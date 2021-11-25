@@ -47,7 +47,7 @@ const MoviesListDisplay = props => {
                 {props.nowShowing === 'now showing' && <span>Screen: {props.theater}</span>}
                 <span>Release Date : {props.releaseDate}</span>
                 <span>Category:  </span>
-                {props.category.length!=0?props.category.map((cat) => <span >{cat}, </span>):""}                
+                {props.category.length!==0?props.category.map((cat) => <span >{cat}, </span>):""}                
                 {props.nowShowing === 'now showing' && <MovieForm id={props.id} onAddToCart={addToCartHandler} />}
                 <a href="movies.html"><img src={props.image} alt="" /></a>
             </li>

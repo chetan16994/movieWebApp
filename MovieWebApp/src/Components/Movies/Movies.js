@@ -37,7 +37,7 @@ const Movies = (props) => {
         if (showingStatus === 'coming soon')
             return movie.nowShowing === 'coming soon';
         return props.data
-    } )
+    })
     .sort((a,b) =>{
         if (sortedCategory === 'releaseDate'){  
             return new Date(b[sortedCategory]) - new Date(a[sortedCategory]);

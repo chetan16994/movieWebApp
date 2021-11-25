@@ -2,7 +2,6 @@ import React, { Fragment, useRef, useCallback, useState, useEffect } from 'react
 
 import classes from './AddMovie.module.css';
 // import validationClasses from '../UI/FormValidation.module.css';
-import useHttp from '../../hooks/use-Http';
 
 function AddMovie(props) {
 
@@ -93,6 +92,7 @@ function AddMovie(props) {
             });
             const data = await response.json();
             props.addMovie(false)
+            window.location.reload();
         } catch (error) {
             console.log(error)
         }
