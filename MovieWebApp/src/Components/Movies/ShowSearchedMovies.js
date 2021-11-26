@@ -23,6 +23,7 @@ const ShowSearchedMovies = props => {
                                 imdbId={setimdbId}
                             />
                         ))}
+                        
                     </ul>
                 </div>
             </div>

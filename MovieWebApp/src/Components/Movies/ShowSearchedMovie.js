@@ -17,7 +17,7 @@ const ShowSearchedMovie = props => {
                         style={{ height: "280px", width: "241px" }}
                         src={props.image} alt="" />
                     <br />
-                    <button onClick={ClickHandler} style={{ width: "100px", marginLeft: "60px", marginBottom: "30px", marginTop: "20px" }}>Add</button>
+                    <button onClick={ClickHandler} style={{ width: "100px", marginLeft: "60px", marginBottom: "30px", marginTop: "20px" ,borderRadius:"20px"}}>Add</button>
                 </li>
             </div >
         </Fragment>

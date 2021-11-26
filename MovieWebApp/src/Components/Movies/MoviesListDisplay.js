@@ -33,13 +33,17 @@ const MoviesListDisplay = props => {
     };
     return (
         <div>
-            <li>
-                <h2>{props.name}</h2>
-                <span>{props.tagline}</span>
+            <li >
+                <div>
+                    <h2 className="test">{props.name}</h2>
+                    <span>{props.tagline}</span>
+                    <a className="test1" href="movies.html"><img className="testimage" src={props.image} alt="" /></a>
+                </div>
                 <br />
                 <span>Overview</span>
                 <textarea value={props.plot} rows='7' />
-                <span>Rating: {props.rating}</span>
+                
+                <span ><strong className="r-bg">Rating: {props.rating}</strong></span>
                 <span>Duration: {props.duration}</span>
                 {props.nowShowing === 'now showing' && <span>Show timimg: {props.timing}</span>}
                 {props.nowShowing === 'now showing' && <span>Price: {props.price} $</span>}
@@ -49,7 +53,8 @@ const MoviesListDisplay = props => {
                 <span>Category:  </span>
                 {props.category.length!==0?props.category.map((cat) => <span >{cat}, </span>):""}                
                 {props.nowShowing === 'now showing' && <MovieForm id={props.id} onAddToCart={addToCartHandler} />}
-                <a href="movies.html"><img src={props.image} alt="" /></a>
+                <i class="fa fa-trash" aria-hidden="true"></i>
+                
             </li>
             {!ticketAvailable && showPopUP && <NoSeatPopUp onClose={hidePopUpHandler}/>}
         </div >

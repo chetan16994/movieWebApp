@@ -46,7 +46,7 @@ const Movies = (props) => {
     });
 
     return (
-        <div>
+        <div className="align-movieBox">
             <MovieShwoing 
                 selectedShowingStatus={showingStatus}
                 onChangeStatus={showingStatusHandler}

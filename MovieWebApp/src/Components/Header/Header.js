@@ -7,7 +7,7 @@ const Header = (props) => {
     return (
         <Fragment>
             <div>
-                <div id="header">
+                <div id="header" className="header-fixed">
                     <div>
                         <ul>
                             <li className="selected">
@@ -20,7 +20,7 @@ const Header = (props) => {
                                         <a href="#">Now Showing</a>
                                     </li>
                                     <li>
-                                        <a href="#">Comming Soon</a>
+                                        <a href="#">Coming Soon</a>
                                     </li>
                                 </ul>
                             </li>

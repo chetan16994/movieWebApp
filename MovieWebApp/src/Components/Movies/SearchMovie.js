@@ -54,12 +54,13 @@ const SearchMovie = () =>{
     return(
         <Fragment>
             <form onSubmit={searchMovieHandler}>
-                <div>
-                    <label htmlFor='title' style={{ color: "white", marginLeft: "100px", fontSize:"45px" ,marginBottom:"250px", marginTop:"250px"}}>Movie title</label>
-                    <br/>
-                    <input style={{ marginLeft: "100px" }} type='text' id='title' ref={titleRef} />
+                <div className="topnav">
+                    <a>Movie Title</a>
+                    <div className="search-container">
+                        <input style={{ marginLeft: "100px" }} type='text' id='title' ref={titleRef} />
+                        <button type="submit"><i className="fa fa-search"></i></button>
+                    </div>
                 </div>
-                <button style={{ marginLeft: "100px", }}>Search Movie</button>
             </form>
             {content}
             {movies && <ShowSearchedMovies results={movies} />}
