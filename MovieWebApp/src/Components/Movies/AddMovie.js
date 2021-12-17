@@ -1,10 +1,12 @@
 import React, { Fragment, useRef, useCallback, useState, useEffect } from 'react';
-
 import classes from './AddMovie.module.css';
+import { useDispatch } from 'react-redux';
+import { sendMovieData } from '../../store/movies-action';
 // import validationClasses from '../UI/FormValidation.module.css';
 
 function AddMovie(props) {
 
+    const dispatch = useDispatch();
     const [isLoading, setIsLoading] = useState(false);
     const [movie, setMovie] = useState([]);
 
@@ -81,23 +83,6 @@ function AddMovie(props) {
         fetchMoviesHandler();
     }, [fetchMoviesHandler]);
 
-    async function addMovieHandler(movie) {
-        try {
-            const response = await fetch('https://movie-react-16994-default-rtdb.firebaseio.com/movie.json', {
-                method: 'POST',
-                body: JSON.stringify(movie),
-                headers: {
-                    'Content-Type': 'application/json'
-                }
-            });
-            const data = await response.json();
-            props.addMovie(false)
-            window.location.reload();
-        } catch (error) {
-            console.log(error)
-        }
-    };
-
     function submitHandler(event) {
         event.preventDefault();
 
@@ -122,7 +107,8 @@ function AddMovie(props) {
             price: price
         };
         
-        addMovieHandler(movieData)
+        dispatch(sendMovieData(movieData));
+        
     };
 
     return (

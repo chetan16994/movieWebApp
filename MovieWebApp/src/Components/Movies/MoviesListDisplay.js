@@ -2,10 +2,12 @@ import { useContext,useState } from 'react';
 import MovieForm from './MovieForm';
 import CartContext from '../../store/cart-context';
 import NoSeatPopUp from '../UI/NoSeatPopUP';
-
+import { useSelector, useDispatch } from 'react-redux';
+import { cartActions } from '../../store/cart-slice';
 
 const MoviesListDisplay = props => {
-
+    const dispatch=useDispatch();
+    const cartDataRedux = useSelector((state) => state.cart)
     const cartCtx = useContext(CartContext);
     const [ticketAvailable, setTicketAvailable]=useState(true);
     const [showPopUP,setShowPopUp]=useState(true);
@@ -14,18 +16,34 @@ const MoviesListDisplay = props => {
         setShowPopUp(false);
     };
 
-    const addToCartHandler = (amount) => {
-        if(props.capacity>0){
-        props.onUpdateCartCapacity(props.id, amount);
-        cartCtx.addItem({
+    const addToCartHandler = () => {
+        const item = {
             id: props.id,
             name: props.name,
-            amount: amount,
+            amount: 1,
             price: props.price,
             theater: props.theater,
-            capacity: props.capacity - 1,
+            capacity: props.capacity,
             timing: props.timing
-        });
+        };
+
+        dispatch(cartActions.addItemToCart(item));
+
+        if(props.capacity>0){
+
+        //  update cart slice instead of cart context and pther 
+
+        props.onUpdateCartCapacity(props.id);
+        // cartCtx.addItem({
+        //     id: props.id,
+        //     name: props.name,
+        //     amount: amount,
+        //     price: props.price,
+        //     theater: props.theater,
+        //     capacity: props.capacity - 1,
+        //     timing: props.timing
+        // });
+        
         }else{
             setShowPopUp(true);
             setTicketAvailable(false);

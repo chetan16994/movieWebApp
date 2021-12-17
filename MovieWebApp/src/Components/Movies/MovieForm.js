@@ -3,25 +3,25 @@ import classes from './MovieForm.module.css';
 import Input from '../UI/Input';
 
 const MovieForm = props =>{
-    const [amountIsValid, setAmountIsValid] = useState(true);
-    const amountInputRef = useRef();
+    // const [amountIsValid, setAmountIsValid] = useState(true);
+    // const amountInputRef = useRef();
 
     const submitHandler = event => {
         event.preventDefault();
-        const enteredAmount = amountInputRef.current.value;
-        const enteredAmountNumber = +enteredAmount;
+        // const enteredAmount = amountInputRef.current.value;
+        // const enteredAmountNumber = +enteredAmount;
 
-        if (enteredAmount.trim().length === 0 || enteredAmountNumber < 1 || enteredAmountNumber > 5) {
-            setAmountIsValid(false);
-            return;
-        }
-        props.onAddToCart(enteredAmountNumber);
+        // if (enteredAmount.trim().length === 0 || enteredAmountNumber < 1 || enteredAmountNumber > 5) {
+        //     setAmountIsValid(false);
+        //     return;
+        // }
+        props.onAddToCart(1);
     };
     return (
         <form className={classes.form} 
         onSubmit={submitHandler}
         >
-            <Input
+            {/* <Input
                 ref={amountInputRef}
                 label='Amount'
                 input={{
@@ -32,9 +32,9 @@ const MovieForm = props =>{
                     step: '1',
                     defaultValue: '1',
                 }}
-            />
+            /> */}
             <button style={{ marginBottom: '15px', marginTop: '7px'}} >+ Add</button>
-            {!amountIsValid && <p>Please eneter valid amount</p>}
+            {/* {!amountIsValid && <p>Please eneter valid amount</p>} */}
         </form>
     );
 };
