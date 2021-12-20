@@ -5,7 +5,7 @@ export const fetchMovieData = () => {
     return async (dispatch) => {
         const fetchData = async () => {
             const response = await fetch(
-                'https://movie-react-16994-default-rtdb.firebaseio.com/movie.json'
+                'https://movie-e96e8-default-rtdb.firebaseio.com/movie.json'
             );
 
             if (!response.ok) {
@@ -38,7 +38,7 @@ export const fetchMovieData = () => {
 export const sendMovieData = (movieData) => {
     return async (dispatch) => {
         const sendRequest = async () => {
-            const response = await fetch('https://movie-react-16994-default-rtdb.firebaseio.com/movie.json', {
+            const response = await fetch('https://movie-e96e8-default-rtdb.firebaseio.com/movie.json', {
                 method: 'POST',
                 body: JSON.stringify(movieData),
                 headers: {

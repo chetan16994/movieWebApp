@@ -11,8 +11,8 @@ import { cartActions } from '../../store/cart-slice';
 const Cart = props => {
     const dispatch=useDispatch();
     const [isCheckout, setIsCheckout] = useState(false);
-    // const [isSubmitting, setIsSubmitting] = useState(false);
-    // const [didSubmit, setDidSubmit] = useState(false);
+    const [isSubmitting, setIsSubmitting] = useState(false);
+    const [didSubmit, setDidSubmit] = useState(false);
     const cartCtx = useContext(CartContext);
     const cartDataRedux=useSelector((state)=>state.cart)
 
@@ -53,16 +53,16 @@ const Cart = props => {
     };
 
     const submitOrderHandler = async (userData) => {
-        // setIsSubmitting(true);
-        await fetch('https://movie-react-16994-default-rtdb.firebaseio.com/orders.json', {
+        setIsSubmitting(true);
+        await fetch('https://movie-e96e8-default-rtdb.firebaseio.com/orders.json', {
             method: 'POST',
             body: JSON.stringify({
                 user: userData,
                 orderedItems: cartDataRedux,
             }),
         });
-        // setIsSubmitting(false);
-        // setDidSubmit(true);
+        setIsSubmitting(false);
+        setDidSubmit(true);
         cartActions.replaceCart();
     };
 
@@ -151,9 +151,9 @@ const Cart = props => {
 
     return (
         <Modal onClose={props.onClose}>
-            {cartModalContent}
-            {/* { isSubmittingModalContent} */}
-            {/* { didSubmitModalContent} */}
+            {!isSubmitting && !didSubmit && cartModalContent}
+            {isSubmitting && isSubmittingModalContent}
+            {!isSubmitting && didSubmit && didSubmitModalContent}
         </Modal>
     );
 };
