@@ -1,7 +1,6 @@
 import { Fragment } from "react";
 import HeaderCartButton from "./HeaderCartButton";
-
-
+import { NavLink } from "react-router-dom";
 
 const Header = (props) => {
     return (
@@ -10,8 +9,18 @@ const Header = (props) => {
                 <div id="header" className="header-fixed">
                     <div>
                         <ul>
-                            <li className="selected">
+                            <li>
+                            <NavLink className="selected" to="/">
+                                Home
+                            </NavLink>
+                            </li>
+                            {/* <li className="selected">
                                 <a href="index.html">Home</a>
+                            </li> */}
+                            <li>
+                            <NavLink className="selected" to="/search-movies">
+                                Search Movies
+                            </NavLink>
                             </li>
                             <li>
                                 <a href="movies.html">Movies</a>

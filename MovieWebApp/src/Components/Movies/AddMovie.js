@@ -2,11 +2,14 @@ import React, { Fragment, useRef, useCallback, useState, useEffect } from 'react
 import classes from './AddMovie.module.css';
 import { useDispatch } from 'react-redux';
 import { sendMovieData } from '../../store/movies-action';
+import {useNavigate} from 'react-router-dom';
+
 // import validationClasses from '../UI/FormValidation.module.css';
 
 function AddMovie(props) {
 
     const dispatch = useDispatch();
+    const navigate =useNavigate();
     const [isLoading, setIsLoading] = useState(false);
     const [movie, setMovie] = useState([]);
 
@@ -108,7 +111,7 @@ function AddMovie(props) {
         };
         
         dispatch(sendMovieData(movieData));
-        
+        navigate("/");
     };
 
     return (

@@ -52,7 +52,8 @@ const SearchMovie = () =>{
     }
 
     return(
-        <Fragment>
+        <Fragment >
+            <div style={{marginTop:"300px"}}>
             <form onSubmit={searchMovieHandler}>
                 <div className="topnav">
                     <a>Movie Title</a>
@@ -63,7 +64,8 @@ const SearchMovie = () =>{
                 </div>
             </form>
             {content}
-            {movies && <ShowSearchedMovies results={movies} />}
+            {movies && <ShowSearchedMovies style={{}} results={movies} />}
+            </div>
         </Fragment>
     )
 };

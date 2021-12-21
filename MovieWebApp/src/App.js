@@ -1,5 +1,6 @@
-import { useState, useEffect } from 'react';
+import { useState, useEffect, Fragment } from 'react';
 import './App.css';
+import { Routes, Route} from 'react-router-dom';
 import Header from './Components/Header/Header';
 import Footer from './Components/Footer/Footer';
 import Cart from './Components/Cart/Cart';
@@ -67,63 +68,7 @@ function App() {
     
     setMovies(loadedMovies);
   }, [responseData]);
-
-
-  // useEffect(() => {
-  //   const fetchMovies = async () => {
-  //     const response = await fetch(
-  //       'https://movie-react-16994-default-rtdb.firebaseio.com/movie.json'
-  //     );
-
-  //     if (!response.ok) {
-  //       throw new Error('Something went wrong!');
-  //     }
-
-  //     const responseData = await response.json();
-  //     const loadedMovies = [];
-
-  //     for (const key in responseData) {
-  //       const tempCat=[];
-  //       responseData[key].genres.map((ele)=>{
-  //         tempCat.push(ele.value)
-  //       })
-
-  //       loadedMovies.push({
-  //         id: responseData[key].id,
-  //         name: responseData[key].name,
-  //         image: responseData[key].image,
-  //         price: responseData[key].price != "none" ? parseInt(responseData[key].price):"none",
-  //         plot: responseData[key].plot,
-  //         rating: responseData[key].rating,
-  //         capacity: responseData[key].capacity,
-  //         duration: responseData[key].duration,
-  //         releaseDate: responseData[key].releaseDate,
-  //         nowShowing: responseData[key].showingStatus,
-  //         tagline: responseData[key].tagline,
-  //         theater: responseData[key].theater,
-  //         timing: responseData[key].timing,
-  //         category: tempCat,
-  //       });
-  //     }
-
-  //     setMovies(loadedMovies);
-  //     setIsLoading(false);
-  //   };
-
-  //   fetchMovies().catch((error) => {
-  //     setIsLoading(false);
-  //     setHttpError(error.message);
-  //   });
-  // }, []);
-
-  // if (isLoading) {
-  //   return (
-  //     <section style={{color:"white"}}>
-  //       <p>Loading...</p>
-  //     </section>
-  //   );
-  // }
-
+  
   if (httpError) {
     return (
       <section style={{ color: "red" }}>
@@ -133,15 +78,19 @@ function App() {
   }
 
   return (
-    <CartProvider>
+    <Fragment>
       <Header onShowCart={showCartHandler} />
-      {cartIsShown && <Cart 
-      // onUpdateCartCapacity={updateCapacityHandler} 
-      onClose={hideCartHandler} />}
-      <Movies data={movies} onUpdateCartCapacity={updateCapacityHandler} />
-      <SearchMovie />
+      {cartIsShown && <Cart
+        // onUpdateCartCapacity={updateCapacityHandler} 
+        onClose={hideCartHandler} />}
+    <Routes>
+            
+      <Route path="/" element={<Movies data={movies} onUpdateCartCapacity={updateCapacityHandler} />} />
+      <Route path="/search-movies" element={<SearchMovie />} />
+      
+    </Routes>
       <Footer />
-    </CartProvider>
+    </Fragment>
   );
 }
 
