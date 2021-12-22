@@ -7,6 +7,7 @@ import NoSeatPopUp from '../UI/NoSeatPopUP';
 import Checkout from './Checkout';
 import { useSelector, useDispatch } from 'react-redux';
 import { cartActions } from '../../store/cart-slice';
+import { moviesActions } from '../../store/movie-slice';
 
 const Cart = props => {
     const dispatch=useDispatch();
@@ -28,6 +29,7 @@ const Cart = props => {
 
     const cartItemRemoveHandler = (item) => {
         dispatch(cartActions.removeItemFromCart(item.id))
+        dispatch(moviesActions.increaseCapacity(item.id));
         console.log(cartDataRedux, " cartData redux")
         console.log(item)
         // item.capacity = item.capacity + 1;
@@ -36,9 +38,10 @@ const Cart = props => {
     };
 
     const cartItemAddHandler = (item) => {
-        dispatch(cartActions.addItemToCart(item))
-        console.log(cartDataRedux," cartData redux")
+        
         if (item.capacity > 0) {
+            dispatch(moviesActions.decreaseCapacity(item.id));
+            dispatch(cartActions.addItemToCart(item))
             // item.capacity = item.capacity - 1;
             // cartCtx.addItem({ ...item, amount: 1 });
             // props.onUpdateCartCapacity(item.id, 1);

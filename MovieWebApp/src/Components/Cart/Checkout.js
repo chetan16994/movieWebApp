@@ -1,10 +1,18 @@
 import { useRef, useState } from 'react';
 import classes from './Checkout.module.css';
+import { useContext } from 'react';
+import AuthContext from '../../store/auth-context';
+import { useDispatch } from 'react-redux';
+import { cartActions } from '../../store/cart-slice';
 
 const isEmpty = (value) => value.trim() === '';
 const isFiveChars = (value) => value.trim().length === 5;
 
 const Checkout = (props) => {
+
+    const authCtx = useContext(AuthContext);
+    const dispatch = useDispatch();
+
     const [formInputsValidity, setFormInputsValidity] = useState({
         name: true,
         street: true,
@@ -19,7 +27,10 @@ const Checkout = (props) => {
 
     const confirmHandler = (event) => {
         event.preventDefault();
-
+        if(!authCtx.isLoggedIn){
+            alert("log in first")
+            return;
+        }
         const enteredName = nameInputRef.current.value;
         const enteredStreet = streetInputRef.current.value;
         const enteredPostalCode = postalCodeInputRef.current.value;
@@ -46,13 +57,15 @@ const Checkout = (props) => {
         if (!formIsValid) {
             return;
         }
-
+        dispatch(cartActions.replaceCart());
         props.onConfirm({
             name: enteredName,
             street: enteredStreet,
             city: enteredCity,
             postalCode: enteredPostalCode,
         });
+
+
     };
 
     const nameControlClasses = `${classes.control} ${formInputsValidity.name ? '' : classes.invalid

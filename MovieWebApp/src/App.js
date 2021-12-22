@@ -1,18 +1,22 @@
-import { useState, useEffect, Fragment } from 'react';
+import React, { useState, useEffect, Fragment, Suspense, useContext   } from 'react';
 import './App.css';
 import { Routes, Route} from 'react-router-dom';
 import Header from './Components/Header/Header';
 import Footer from './Components/Footer/Footer';
 import Cart from './Components/Cart/Cart';
 import Movies from './Components/Movies/Movies';
-import CartProvider from './store/CartProvider';
-import SearchMovie from './Components/Movies/SearchMovie';
 import { useSelector, useDispatch } from 'react-redux';
 import { fetchMovieData } from './store/movies-action';
+import AuthContext from './store/auth-context';
+
+const SearchMovie = React.lazy(() => import('./Components/Movies/SearchMovie') );
+const AuthForm = React.lazy(() => import('./Auth/AuthForm'));
+const ProfileForm = React.lazy(() => import('./Components/Profile/ProfileForm'));
 
 function App() {
 
   const dispatch =useDispatch();
+  const authCtx = useContext(AuthContext);
   const responseData = useSelector((state) => state.movies.movies  );
   // const [isLoading, setIsLoading] = useState(true);
   const [httpError, setHttpError] = useState();
@@ -76,19 +80,36 @@ function App() {
       </section>
     );
   }
+  console.log(authCtx.email," emaill")
 
   return (
     <Fragment>
       <Header onShowCart={showCartHandler} />
+     
       {cartIsShown && <Cart
         // onUpdateCartCapacity={updateCapacityHandler} 
         onClose={hideCartHandler} />}
+      <Suspense
+        fallback={
+          <p>Loading .... </p>
+        }
+      >
     <Routes>
-            
+         
       <Route path="/" element={<Movies data={movies} onUpdateCartCapacity={updateCapacityHandler} />} />
+
+          {authCtx.isLoggedIn && authCtx.email ==="chetan.birthare@aggiemail.usu.edu" && (
       <Route path="/search-movies" element={<SearchMovie />} />
-      
+          )}
+
+      <Route path="/auth" element={<AuthForm />} />
+
+          {authCtx.isLoggedIn && (
+      <Route path="/profile" element={<ProfileForm />} />
+          )}
+
     </Routes>
+    </ Suspense>
       <Footer />
     </Fragment>
   );

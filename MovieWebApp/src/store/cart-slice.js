@@ -19,7 +19,7 @@ const cartSlice = createSlice({
         addItemToCart(state, action) {
            
             // update movie capacity as well
-
+            
             const newItem = action.payload;
             const existingItem = state.items.find((item) => item.id === newItem.id);
             console.log(state)

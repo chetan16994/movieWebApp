@@ -1,8 +1,15 @@
-import { Fragment } from "react";
+import { Fragment , useContext} from "react";
 import HeaderCartButton from "./HeaderCartButton";
 import { NavLink } from "react-router-dom";
+import AuthContext from "../../store/auth-context";
 
 const Header = (props) => {
+    const authCtx = useContext(AuthContext);
+    const isLoggedIn = authCtx.isLoggedIn;
+    const logoutHandler = () => {
+        authCtx.logout();
+        // optional: redirect the user
+    };
     return (
         <Fragment>
             <div>
@@ -17,12 +24,14 @@ const Header = (props) => {
                             {/* <li className="selected">
                                 <a href="index.html">Home</a>
                             </li> */}
+                            {authCtx.isLoggedIn && authCtx.email === "chetan.birthare@aggiemail.usu.edu" &&
                             <li>
                             <NavLink className="selected" to="/search-movies">
                                 Search Movies
                             </NavLink>
                             </li>
-                            <li>
+                            }   
+                            {/* <li>
                                 <a href="movies.html">Movies</a>
                                 <ul>
                                     <li>
@@ -32,13 +41,26 @@ const Header = (props) => {
                                         <a href="#">Coming Soon</a>
                                     </li>
                                 </ul>
-                            </li>
+                            </li> */}
+                            {!authCtx.isLoggedIn &&  
                             <li>
-                                <a href="ticket-info.html">Ticket Info</a>
-                            </li>
-                            <li>
-                                <a href="login.html">Login</a>
-                            </li>
+                            <NavLink className="selected" to="/auth">
+                                Login
+                            </NavLink>
+                                </li>
+                            }
+                            {authCtx.isLoggedIn &&
+                                <li>
+                                    <NavLink className="selected" to="/profile">
+                                    Profile
+                                </NavLink>
+                                </li>
+                            }
+                            {authCtx.isLoggedIn &&  
+                                <li>
+                                    <a onClick={logoutHandler}>Logout</a>
+                                </li>
+                            }           
                         </ul>
                         <HeaderCartButton onClick={props.onShowCart} />
                     </div>
