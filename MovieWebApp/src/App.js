@@ -46,6 +46,7 @@ function App() {
   
   useEffect(()=>{
     const loadedMovies = [];
+    // console.log(responseData)
     for (const key in responseData) {
       const tempCat = [];
       responseData[key].genres.map((ele) => {

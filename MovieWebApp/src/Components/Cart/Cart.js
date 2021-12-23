@@ -2,7 +2,6 @@ import { useContext, useState, Fragment, useEffect } from 'react';
 import classes from './Cart.module.css';
 import Modal from '../UI/Modal';
 import CartItem from './CartItem';
-import CartContext from '../../store/cart-context';
 import NoSeatPopUp from '../UI/NoSeatPopUP';
 import Checkout from './Checkout';
 import { useSelector, useDispatch } from 'react-redux';
@@ -14,7 +13,6 @@ const Cart = props => {
     const [isCheckout, setIsCheckout] = useState(false);
     const [isSubmitting, setIsSubmitting] = useState(false);
     const [didSubmit, setDidSubmit] = useState(false);
-    const cartCtx = useContext(CartContext);
     const cartDataRedux=useSelector((state)=>state.cart)
 
     const [ticketAvailable, setTicketAvailable] = useState(true);

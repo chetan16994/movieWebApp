@@ -93,7 +93,8 @@ function AddMovie(props) {
             return;
         }
 
-        const movieData = {
+        const movieData = 
+        {
             id: props.id,
             name: movie.title,
             tagline: movie.tagline ? movie.tagline : "",

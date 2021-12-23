@@ -5,16 +5,21 @@ import NoSeatPopUp from '../UI/NoSeatPopUP';
 import { useSelector, useDispatch } from 'react-redux';
 import { cartActions } from '../../store/cart-slice';
 import { moviesActions } from '../../store/movie-slice';
+ import { deleteMovie } from '../../store/movies-action';
+import classes from './MoviesListDisplay.module.css';
 
 const MoviesListDisplay = props => {
+    const movieData = useSelector((state) => state.movies.movies);
     const dispatch=useDispatch();
-    const cartDataRedux = useSelector((state) => state.cart)
-    const cartCtx = useContext(CartContext);
     const [ticketAvailable, setTicketAvailable]=useState(true);
     const [showPopUP,setShowPopUp]=useState(true);
 
     const hidePopUpHandler =()=>{
         setShowPopUp(false);
+    };
+
+    const deleteHandler = () =>{
+        dispatch(deleteMovie(props.id, movieData));
     };
 
     const addToCartHandler = () => {
@@ -61,9 +66,8 @@ const MoviesListDisplay = props => {
                 <span>Category:  </span>
                 {props.category.length!==0?props.category.map((cat) => <span >{cat}, </span>):""}                
                 {props.nowShowing === 'now showing' && <MovieForm id={props.id} onAddToCart={addToCartHandler} />}
-                
-                <i class="fa fa-trash" aria-hidden="true"></i>
-                
+                <button className={classes.button}>Edit  </button>
+                <button className={classes.button} onClick={deleteHandler}>  Delete</button>
             </li>
             {!ticketAvailable && showPopUP && <NoSeatPopUp onClose={hidePopUpHandler}/>}
         </div >
