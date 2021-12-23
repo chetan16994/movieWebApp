@@ -12,9 +12,6 @@ const HomeFooter = () => {
                             <li>
                                 <a href="ticket-info.html">Ticket Info</a>
                             </li>
-                            {/* <li>
-                                <a href="#">Location</a>
-                            </li> */}
                             <li>
                                 <a href="movies.html">Now Showing</a>
                             </li>

@@ -18,7 +18,6 @@ function App() {
   const dispatch =useDispatch();
   const authCtx = useContext(AuthContext);
   const responseData = useSelector((state) => state.movies.movies  );
-  // const [isLoading, setIsLoading] = useState(true);
   const [httpError, setHttpError] = useState();
   const [movies,setMovies]=useState([]);
   const [cartIsShown, setCartIsShown] = useState(false);
@@ -46,7 +45,7 @@ function App() {
   
   useEffect(()=>{
     const loadedMovies = [];
-    // console.log(responseData)
+
     for (const key in responseData) {
       const tempCat = [];
       responseData[key].genres.map((ele) => {
@@ -81,14 +80,12 @@ function App() {
       </section>
     );
   }
-  console.log(authCtx.email," emaill")
 
   return (
     <Fragment>
       <Header onShowCart={showCartHandler} />
      
       {cartIsShown && <Cart
-        // onUpdateCartCapacity={updateCapacityHandler} 
         onClose={hideCartHandler} />}
       <Suspense
         fallback={

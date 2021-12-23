@@ -1,8 +1,5 @@
 import { uiActions } from './ui-slice';
 import { moviesActions } from './movie-slice';
-import { useSelector } from 'react-redux';
-
-// import firebaseDb  from './Firebase-config';
 
 export const fetchMovieData = () => {
     return async (dispatch) => {
@@ -20,7 +17,6 @@ export const fetchMovieData = () => {
 
         try {
             const moviesData = await fetchData();
-            console.log(moviesData," inside axtion")
             dispatch(
                 moviesActions.setMovies({
                         movies: moviesData
@@ -59,48 +55,44 @@ export const sendMovieData = (movieData) => {
     };
 };
  
-export const deleteMovie = (id,movieData) => {
+// export const deleteMovie = (id,movieData) => {
     
-    return async (dispatch) => {
+//     return async (dispatch) => {
         
-        let movieToBeDeleted= ''
+//         let movieToBeDeleted= ''
         
-        for (let key in movieData) {
-            if (id === movieData[key].id) {
-                movieToBeDeleted = key;
-            }
-        }
+//         for (let key in movieData) {
+//             if (id === movieData[key].id) {
+//                 movieToBeDeleted = key;
+//             }
+//         }
 
-        movieData = Object.keys(movieData).filter(key =>
-            key !== movieToBeDeleted).reduce((obj, key) => {
-                obj[key] = movieData[key];
-                return obj;
-            }, {}
-            );
+//         movieData = Object.keys(movieData).filter(key =>
+//             key !== movieToBeDeleted).reduce((obj, key) => {
+//                 obj[key] = movieData[key];
+//                 return obj;
+//             }, {}
+//             );
 
-        // delete movieData[movieToBeDeleted];
-        // console.log(movieData, "kk")
-        // console.log(movieToBeDeleted, "kk")
+//         // const sendRequest = async () => {
+//         //     const response = await fetch('https://movie-e96e8-default-rtdb.firebaseio.com/movie.json', {
+//         //         method: 'PATCH',
+//         //         body: JSON.stringify(movieData),
+//         //         headers: {
+//         //             'Content-Type': 'application/json'
+//         //         }
+//         //     });
 
-        const sendRequest = async () => {
-            const response = await fetch('https://movie-e96e8-default-rtdb.firebaseio.com/movie.json', {
-                method: 'POST',
-                body: JSON.stringify(movieData),
-                headers: {
-                    'Content-Type': 'application/json'
-                }
-            });
+//         //     if (!response.ok) {
+//         //         throw new Error('Sending movie data failed.');
+//         //     }
+//         //     window.location.reload();
+//         // };
 
-            if (!response.ok) {
-                throw new Error('Sending movie data failed.');
-            }
-            window.location.reload();
-        };
-
-        try {
-            await sendRequest();
-        } catch (error) {
-            throw new Error(" Sending movie data failed. ")
-        }
-    };
-};
+//         // try {
+//         //     await sendRequest();
+//         // } catch (error) {
+//         //     throw new Error(" Sending movie data failed. ")
+//         // }
+//     };
+// };

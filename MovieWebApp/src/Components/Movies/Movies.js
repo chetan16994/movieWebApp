@@ -22,8 +22,6 @@ const Movies = (props) => {
         setShowingStatus(showingStatus)
     };
 
-    // const filteredAndSortedMovies = filterAndSortMovies(props.data);
-
     const filteredAndSortedMovies = props.data.filter((movie) => {       
         if (filteredCategory.length === 0 || filteredCategory==='All'){
                 return props.data;

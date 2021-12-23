@@ -4,8 +4,6 @@ import { useDispatch } from 'react-redux';
 import { sendMovieData } from '../../store/movies-action';
 import {useNavigate} from 'react-router-dom';
 
-// import validationClasses from '../UI/FormValidation.module.css';
-
 function AddMovie(props) {
 
     const dispatch = useDispatch();

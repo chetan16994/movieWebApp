@@ -8,7 +8,6 @@ const Header = (props) => {
     const isLoggedIn = authCtx.isLoggedIn;
     const logoutHandler = () => {
         authCtx.logout();
-        // optional: redirect the user
     };
     return (
         <Fragment>
@@ -21,27 +20,13 @@ const Header = (props) => {
                                 Home
                             </NavLink>
                             </li>
-                            {/* <li className="selected">
-                                <a href="index.html">Home</a>
-                            </li> */}
                             {authCtx.isLoggedIn && authCtx.email === "chetan.birthare@aggiemail.usu.edu" &&
                             <li>
                             <NavLink className="selected" to="/search-movies">
                                 Search Movies
                             </NavLink>
                             </li>
-                            }   
-                            {/* <li>
-                                <a href="movies.html">Movies</a>
-                                <ul>
-                                    <li>
-                                        <a href="#">Now Showing</a>
-                                    </li>
-                                    <li>
-                                        <a href="#">Coming Soon</a>
-                                    </li>
-                                </ul>
-                            </li> */}
+                            }
                             {!authCtx.isLoggedIn &&  
                             <li>
                             <NavLink className="selected" to="/auth">

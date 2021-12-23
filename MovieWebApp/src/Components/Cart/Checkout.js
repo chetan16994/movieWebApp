@@ -27,7 +27,7 @@ const Checkout = (props) => {
 
     const confirmHandler = (event) => {
         event.preventDefault();
-        if(!authCtx.isLoggedIn){
+        if (!authCtx.isLoggedIn) {
             alert("log in first")
             return;
         }
@@ -57,7 +57,7 @@ const Checkout = (props) => {
         if (!formIsValid) {
             return;
         }
-        
+
         dispatch(cartActions.replaceCart());
         props.onConfirm({
             name: enteredName,
