@@ -5,7 +5,8 @@ export const fetchMovieData = () => {
     return async (dispatch) => {
         const fetchData = async () => {
             const response = await fetch(
-                'https://movie-e96e8-default-rtdb.firebaseio.com/movie.json'
+                // 'https://movie-e96e8-default-rtdb.firebaseio.com/movie.json'
+                'https://moviereactlatest-default-rtdb.firebaseio.com/movie.json'
             );
 
             if (!response.ok) {
@@ -33,7 +34,7 @@ export const sendMovieData = (movieData) => {
     return async (dispatch) => {
        
         const sendRequest = async () => {
-            const response = await fetch('https://movie-e96e8-default-rtdb.firebaseio.com/movie.json', {
+            const response = await fetch('https://moviereactlatest-default-rtdb.firebaseio.com/movie.json', {
                 method: 'POST',
                 body: JSON.stringify(movieData),
                 headers: {
@@ -54,45 +55,3 @@ export const sendMovieData = (movieData) => {
         }
     };
 };
- 
-// export const deleteMovie = (id,movieData) => {
-    
-//     return async (dispatch) => {
-        
-//         let movieToBeDeleted= ''
-        
-//         for (let key in movieData) {
-//             if (id === movieData[key].id) {
-//                 movieToBeDeleted = key;
-//             }
-//         }
-
-//         movieData = Object.keys(movieData).filter(key =>
-//             key !== movieToBeDeleted).reduce((obj, key) => {
-//                 obj[key] = movieData[key];
-//                 return obj;
-//             }, {}
-//             );
-
-//         // const sendRequest = async () => {
-//         //     const response = await fetch('https://movie-e96e8-default-rtdb.firebaseio.com/movie.json', {
-//         //         method: 'PATCH',
-//         //         body: JSON.stringify(movieData),
-//         //         headers: {
-//         //             'Content-Type': 'application/json'
-//         //         }
-//         //     });
-
-//         //     if (!response.ok) {
-//         //         throw new Error('Sending movie data failed.');
-//         //     }
-//         //     window.location.reload();
-//         // };
-
-//         // try {
-//         //     await sendRequest();
-//         // } catch (error) {
-//         //     throw new Error(" Sending movie data failed. ")
-//         // }
-//     };
-// };
